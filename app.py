@@ -3,25 +3,10 @@ import os
 
 import PIL.Image as Image
 import numpy as np
-import tensorflow as tf
 from flask import Flask, render_template, request, abort, send_from_directory
 from werkzeug.utils import secure_filename
 
-reload_model = tf.keras.models.load_model('project1/saved_flowers_model')
-IMAGE_SIZE = (224, 224)
-classes = {
-    'roses': 2,
-    'daisy': 0,
-    'tulips': 4,
-    'dandelion': 1,
-    'sunflowers': 3}
-
-
-def get_class_string_from_index(index):
-   for class_string, class_index in classes.items():
-      if class_index == index:
-         return class_string
-
+from project1.flower_model import get_class_string_from_index, reload_model
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
@@ -75,4 +60,4 @@ def upload(filename):
 
 
 if __name__ == '__main__':
-   app.run(debug=True)
+   app.run(debug=False, host='0.0.0.0')
