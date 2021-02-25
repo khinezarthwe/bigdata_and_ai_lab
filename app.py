@@ -6,7 +6,7 @@ import numpy as np
 from flask import Flask, render_template, request, abort, send_from_directory
 from werkzeug.utils import secure_filename
 
-from project1.flower_model import get_class_string_from_index, reload_model
+from project1.flower_model import get_class_string_from_index, reload_model, IMAGE_SIZE
 
 app = Flask(__name__)
 app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024
